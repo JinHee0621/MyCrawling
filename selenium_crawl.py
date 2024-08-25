@@ -47,7 +47,7 @@ while True:
             next_soup = BeautifulSoup(driver.page_source,'lxml')
             content = next_soup.find('div', class_='board_view_content')
             input_data = '\n' + title_ele + '||' + content.get_text().replace('\n', '\\n').replace('\r','\\r')
-
+            
         except Exception as e:
             input_data = '\n' + title_ele + '||' + str(e).replace('\n', '\\n').replace('\r','\\r')
             pass

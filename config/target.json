@@ -1,5 +1,17 @@
 [
     {
-        "url" : ""
+        "type" : "board",
+        "url" : "",
+        "list_url" : "",
+        "list_tag" : "",
+        "list_key" : "",
+        "list_num_tag" : "",
+        "list_num_key" : "",
+        "ele_url" : "",
+        "ele_url_key" : "",
+        "content_tag" : "",
+        "content_key" : "",
+        "row_count" : "",
+        "dest" : ""
     }
 ]

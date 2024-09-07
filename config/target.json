@@ -1,5 +1,145 @@
 [
     {
+        "num" : 15,
+        "name" : "농업생명과학대학",
+        "type" : "board_2",
+        "url" : "https://cals.snu.ac.kr/board/notice?page=",
+        "list_url" : "https://cals.snu.ac.kr",
+        "list_tag" : "td",
+        "list_key" : "title left",
+        "list_num_tag" : "td",
+        "list_num_key" : "",
+        "ele_url" : "a",
+        "ele_url_key" : "href",
+        "ele_date_tag": "td",
+        "ele_date_key": "hidden-xs-down",
+        "content_tag" : "div",
+        "content_key_type" : "class",
+        "content_key" : "fixwidth bbs_contents",
+        "dest" : "file.txt",
+        "board_size" : 30
+    },
+    {
+        "num" : 14,
+        "name" : "농경제사회학부",
+        "type" : "board_8",
+        "url" : "https://aerd.snu.ac.kr/category/notice/page/[pageNum]/",
+        "list_url" : "",
+        "list_tag" : "td",
+        "list_key" : "ttitle",
+        "list_num_tag" : "td",
+        "list_num_key" : "nodata",
+        "ele_url" : "a",
+        "ele_url_key" : "href",
+        "ele_date_tag": "td",
+        "ele_date_key": "tdate",
+        "content_tag" : "li",
+        "content_key_type" : "class",
+        "content_key" : "singleview-content",
+        "dest" : "file.txt",
+        "board_size" : 100
+    },
+    {
+        "num" : 13,
+        "name" : "기계공학부",
+        "type" : "board_11",
+        "url" : "https://me.snu.ac.kr/%EA%B3%B5%EC%A7%80%EC%82%AC%ED%95%AD/?pageid=",
+        "list_url" : "",
+        "list_tag" : "div",
+        "list_key" : "subject",
+        "list_num_tag" : "span",
+        "list_num_key" : "uid",
+        "ele_url" : "a",
+        "ele_url_key" : "href",
+        "ele_date_tag": "span",
+        "ele_date_key": "date",
+        "content_tag" : "div",
+        "content_key_type" : "class",
+        "content_key" : "kboard-content",
+        "dest" : "file.txt",
+        "board_size" : 100
+    },
+    {
+        "num" : 12,
+        "name" : "국제농업기술대학원",
+        "type" : "board_10",
+        "url" : "https://gsiat.snu.ac.kr/notice/?page=[pageNum]&cur_pack=0&sfield=&gtxt=&gbn=1&bcat=&ctop=MN0037&htop=MN0007&ptop=MN0007&idx=",
+        "list_url" : "https://gsiat.snu.ac.kr",
+        "list_tag" : "td",
+        "list_key" : "tit notice_tit",
+        "list_num_tag" : "td",
+        "list_num_key" : "num",
+        "ele_url" : "a",
+        "ele_url_key" : "href",
+        "ele_date_tag": "td",
+        "ele_date_key": "date",
+        "content_tag" : "div",
+        "content_key_type" : "class",
+        "content_key" : "detail ques",
+        "dest" : "file.txt",
+        "board_size" : 100
+    },
+    {
+        "num" : 11,
+        "name" : "음악대학",
+        "type" : "board_9",
+        "url" : "https://music.snu.ac.kr/notice?page=",
+        "list_url" : "",
+        "list_tag" : "dd",
+        "list_key" : "list_cut",
+        "list_num_tag" : "li",
+        "list_num_key" : "pa_no",
+        "ele_url" : "a",
+        "ele_url_key" : "href",
+        "ele_date_tag": "li",
+        "ele_date_key": "pa_date",
+        "content_tag" : "div",
+        "content_key_type" : "class",
+        "content_key" : "cont_div",
+        "dest" : "file.txt",
+        "board_size" : 100
+    },
+    {
+        "num" : 10,
+        "name" : "공예과",
+        "type" : "board_8",
+        "url" : "https://art.snu.ac.kr/category/craft/page/[pageNum]/?catemenu=Notice&type=major",
+        "list_url" : "",
+        "list_tag" : "td",
+        "list_key" : "ttitle",
+        "list_num_tag" : "td",
+        "list_num_key" : "nodata",
+        "ele_url" : "a",
+        "ele_url_key" : "href",
+        "ele_date_tag": "td",
+        "ele_date_key": "tdate",
+        "content_tag" : "div",
+        "content_key_type" : "class",
+        "content_key" : "entry-content",
+        "dest" : "file.txt",
+        "board_size" : 100
+    },
+    {
+        "num" : 9,
+        "name" : "공과대학-err",
+        "type" : "board_7",
+        "url" : "https://eng.snu.ac.kr/snu/bbs/BMSR00004/list.do?menuNo=200176&searchGubunCd=&pageIndex=",
+        "list_url" : "https://eng.snu.ac.kr/snu/bbs/BMSR00004/",
+        "list_tag" : "td",
+        "list_key" : "tal",
+        "list_num_tag" : "td",
+        "list_num_key" : "no",
+        "ele_url" : "a",
+        "ele_url_key" : "href",
+        "ele_date_tag": "td",
+        "ele_date_key": "date",
+        "content_tag" : "div",
+        "content_key_type" : "class",
+        "content_key" : "board_cont not_bottom_border",
+        "dest" : "file.txt",
+        "board_size" : 100
+    },
+    {
         "num" : 8,
         "name" : "고고미술사학과",
         "type" : "board_6",
@@ -8,15 +148,16 @@
         "list_tag" : "td",
         "list_key" : "td2dep",
         "list_num_tag" : "td",
-        "list_num_key" : "",
+        "list_num_key" : "0:3",
         "ele_url" : "a",
         "ele_url_key" : "href",
         "ele_date_tag": "td",
-        "ele_date_key": "",
+        "ele_date_key": "1:3",
         "content_tag" : "td",
         "content_key_type" : "class",
         "content_key" : "viewTxt",
-        "dest" : "file.txt"
+        "dest" : "file.txt",
+        "board_size" : 100
     },
     {
         "num" : 7,
@@ -35,7 +176,8 @@
         "content_tag" : "div",
         "content_key_type" : "class",
         "content_key" : "fixwidth cnt",
-        "dest" : "file.txt"
+        "dest" : "file.txt",
+        "board_size" : 100
     },
     {
         "num" : 6,
@@ -54,7 +196,8 @@
         "content_tag" : "div",
         "content_key_type" : "class",
         "content_key" : "fixwidth cnt",
-        "dest" : "file.txt"
+        "dest" : "file.txt",
+        "board_size" : 100
     },  
     {
         "num" : 5,
@@ -73,7 +216,8 @@
         "content_tag" : "div",
         "content_key_type" : "class",
         "content_key" : "fixwidth bbs_contents",
-        "dest" : "file.txt"
+        "dest" : "file.txt",
+        "board_size" : 100
     },    
     {
         "num" : 4,
@@ -92,7 +236,8 @@
         "content_tag" : "div",
         "content_key_type" : "class",
         "content_key" : "bo_view_2",
-        "dest" : "file.txt"
+        "dest" : "file.txt",
+        "board_size" : 100
     },
     {
         "num" : 3,
@@ -111,7 +256,8 @@
         "content_tag" : "div",
         "content_key_type" : "class",
         "content_key" : "bo_view_2",
-        "dest" : "file.txt"
+        "dest" : "file.txt",
+        "board_size" : 100
     },
     {
         "num" : 2,
@@ -130,7 +276,8 @@
         "content_tag" : "div",
         "content_key_type" : "class",
         "content_key" : "fixwidth bbs_contents",
-        "dest" : "file.txt"
+        "dest" : "file.txt",
+        "board_size" : 100
     },
     {
         "num" : 1,
@@ -149,6 +296,7 @@
         "content_tag" : "section",
         "content_key_type" : "id",
         "content_key" : "bo_v_atc",
-        "dest" : "file.txt"
+        "dest" : "file.txt",
+        "board_size" : 100
     }
 ]

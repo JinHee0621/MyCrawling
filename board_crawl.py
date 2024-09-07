@@ -9,13 +9,16 @@ from bs4 import BeautifulSoup
 from urllib import parse
 import urllib3
 
-
+headers = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'
+}
 def crawl(url, base_url, board_ele_tag, board_ele_key, board_ele_num_tag, board_ele_num, ele_url, ele_url_key, 
-ele_date_tag, ele_date_key, content_tag, content_key_type, content_key, result_path) : 
+ele_date_tag, ele_date_key, content_tag, content_key_type, content_key, result_path, board_size) : 
     def getSoupData(link):
+        
         url = link
         if p.match(url) != None: 
-            res = requests.get(parse.unquote(url), verify=False)
+            res = requests.get(parse.unquote(url), headers=headers, verify=False, allow_redirects=True)
             res.raise_for_status()
 
             if res.encoding not in ['euc-kr', 'utf-8']:
@@ -23,7 +26,7 @@ ele_date_tag, ele_date_key, content_tag, content_key_type, content_key, result_p
             soup = BeautifulSoup(res.text, "lxml")
             return soup
         else:
-            res = requests.get(parse.unquote(url), verify=False)
+            res = requests.get(parse.unquote(url), headers=headers, verify=False, allow_redirects=True)
             res.raise_for_status()
 
             if res.encoding not in ['euc-kr', 'utf-8']:
@@ -44,13 +47,47 @@ ele_date_tag, ele_date_key, content_tag, content_key_type, content_key, result_p
             
     count = 0
     while True:
-        target = url + str(page) #'https://ere.snu.ac.kr/bbs/board.php?bo_table=sub5_1&page=' + str(page)
+        if url.find('[pageNum]') > -1:
+            target = url.replace('[pageNum]', str(page))
+        else:
+            target = url + str(page) #'https://ere.snu.ac.kr/bbs/board.php?bo_table=sub5_1&page=' + str(page)
+        
         soup = getSoupData(target)
         #게시판의 게시글 목록
         content_lists = soup.find_all(board_ele_tag, class_= board_ele_key)
-        content_numbers = soup.find_all(board_ele_num_tag, class_= board_ele_num)
-        content_dates = soup.find_all(ele_date_tag, class_=ele_date_key)
+        content_numbers = []
+        #게시글 목록 페이지에서 게시글 번호, 게시일자 태그 부분에 class가 없는 경우는 n:n 으로 입력하여 td 위치를 지정
+        if len(board_ele_num) == 3 and board_ele_num.find(':') > -1:
+            board_ele_num_list = board_ele_num.split(':')
+            td_list = soup.find_all(board_ele_num_tag, class_= '')
+            target_index = int(board_ele_num_list[0])
+            curr_index = 0
+            for td_ele in td_list:
+                if curr_index == target_index:
+                    content_numbers.append(td_ele)
+                    target_index += int(board_ele_num_list[1])
+                curr_index += 1
+        elif board_ele_num == 'nodata':
+            for i in range(0,len(content_lists)):
+                i = str(i)
+                content_numbers.append(i)
+        else: 
+            content_numbers = soup.find_all(board_ele_num_tag, class_= board_ele_num)
+        #게시글 목록 페이지에서 게시글 번호, 게시일자 태그 부분에 class가 없는 경우는 n:n 으로 입력하여 td 위치를 지정
+        if len(ele_date_key) == 3 and ele_date_key.find(':') > -1:
+            content_dates = []
+            ele_date_key_list = ele_date_key.split(':')
+            td_list = soup.find_all(ele_date_tag, class_= '')
 
+            target_index = int(ele_date_key_list[0])
+            curr_index = 0
+            for td_ele in td_list:
+                if curr_index == target_index:
+                    content_dates.append(td_ele)
+                    target_index += int(ele_date_key_list[1])
+                curr_index += 1
+        else:
+            content_dates = soup.find_all(ele_date_tag, class_=ele_date_key)
         #soup : find로 부터 찾아온 요소에서 텍스트만 추출할때 사용
         #date_time_str = content_dates.string
         #텍스트 날짜 타입으로 변환
@@ -60,8 +97,15 @@ ele_date_tag, ele_date_key, content_tag, content_key_type, content_key, result_p
         for num in content_numbers:
             #게시글제목
             ele_num = ''
-            ele_num = num.get_text().strip()
+            if type(num) is not str:
+                ele_num = num.get_text().strip()
+            else:
+                ele_num = num
+
             if ele_num.isdigit():
+                # 게시글 목록 번호 수로 목록을 가져오나 게시글 목록의 태그 구분자가 없을 경우 게시글 목록의 게시글개수를 입력하여 비교
+                if index >= board_size -1:
+                    break
                 i = content_lists[index]
                 #게시일자
                 ele_date = ''
@@ -73,7 +117,6 @@ ele_date_tag, ele_date_key, content_tag, content_key_type, content_key, result_p
                     if len(link_ele.get_text()) > 6:
                         aData = link_ele
                         ele_title = link_ele.get_text()
-
                 #게시글 ID 또는 링크 추출
                 #aData = i.find('a', href=True)
                 content_links.append(ele_num.strip() + '|' + aData['href'] + '|' + ele_title +  '|' + ele_date)

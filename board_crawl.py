@@ -60,6 +60,7 @@ ele_date_tag, ele_date_key, content_tag, content_key_type, content_key, result_p
         if len(board_ele_num) == 3 and board_ele_num.find(':') > -1:
             board_ele_num_list = board_ele_num.split(':')
             td_list = soup.find_all(board_ele_num_tag, class_= '')
+
             target_index = int(board_ele_num_list[0])
             curr_index = 0
             for td_ele in td_list:
@@ -73,6 +74,7 @@ ele_date_tag, ele_date_key, content_tag, content_key_type, content_key, result_p
                 content_numbers.append(i)
         else: 
             content_numbers = soup.find_all(board_ele_num_tag, class_= board_ele_num)
+
         #게시글 목록 페이지에서 게시글 번호, 게시일자 태그 부분에 class가 없는 경우는 n:n 으로 입력하여 td 위치를 지정
         if len(ele_date_key) == 3 and ele_date_key.find(':') > -1:
             content_dates = []
@@ -109,14 +111,14 @@ ele_date_tag, ele_date_key, content_tag, content_key_type, content_key, result_p
                 i = content_lists[index]
                 #게시일자
                 ele_date = ''
-                ele_date = content_dates[index].get_text()
+                ele_date = content_dates[index].get_text().strip()
                 
                 ele_title = ''
                 for link_ele in i.find_all(ele_url):
                     # 제목에 내용 링크가 있으며 제목의 길이는 6자 이상인것 기준으로 링크를 가져옴
                     if len(link_ele.get_text()) > 6:
                         aData = link_ele
-                        ele_title = link_ele.get_text()
+                        ele_title = link_ele.get_text().strip()
                 #게시글 ID 또는 링크 추출
                 #aData = i.find('a', href=True)
                 content_links.append(ele_num.strip() + '|' + aData['href'] + '|' + ele_title +  '|' + ele_date)

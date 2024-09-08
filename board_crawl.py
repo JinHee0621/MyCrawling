@@ -132,7 +132,7 @@ ele_date_tag, ele_date_key, content_tag, content_key_type, content_key, result_p
             link_ele = i.split('|')
             link_num = link_ele[0]
             link_url = link_ele[1]
-            link_title = link_ele[2].strip()
+            link_title = link_ele[2].strip().replace('\n', ' ').replace('\r', ' ')
             link_date = link_ele[3]
             #print(link_num + ' ' + link_url)
             if link_num.isdigit():

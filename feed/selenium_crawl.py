@@ -23,7 +23,7 @@ default_size = 20
 
 
 while True:
-    url = 'https://korean.snu.ac.kr/category/board_3_gn_44wycjtw_20201202131822/?var_page=' + str(page)
+    url = '' + str(page)
     #게시글페이지 이동
     driver.get(url)
     soup = BeautifulSoup(driver.page_source,'lxml')

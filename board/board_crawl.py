@@ -12,27 +12,64 @@ import urllib3
 headers = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'
 }
-def crawl(url, base_url, board_ele_tag, board_ele_key, board_ele_num_tag, board_ele_num, ele_url, ele_url_key, 
-ele_date_tag, ele_date_key, content_tag, content_key_type, content_key, result_path, board_size) : 
+
+def crawl(target) :
+    print(target)
+    #주소
+    url = target['url']
+
+    #목록주소(상위주소)
+    base_url = target['list_url']
+
+    #게시글 목록 테그
+    board_ele_tag = target['list_tag']
+
+    #게시글 목록 키
+    board_ele_key = target['list_key']
+
+    #게시글 목록 번호 테그
+    board_ele_num_tag = target['list_num_tag']
+
+    #게시글 목록 번호 키
+    board_ele_num = target['list_num_key']
+
+    #게시글 접속 주소
+    ele_url = target['ele_url']
+
+    #게시글 접속 주소 키
+    ele_url_key = target['ele_url_key']
+
+    #게시글 날짜테그
+    ele_date_tag = target['ele_date_tag']
+
+    #게시글 날짜 키
+    ele_date_key =  target['ele_date_key']
+
+    #내용 테그
+    content_tag =  target['content_tag']
+
+    #내용 키 유형 ( id, class )
+    content_key_type =  target['content_key_type']
+
+    #내용 키
+    content_key = target['content_key']
+
+    #결과 경로
+    result_path = target['dest']
+
+    #게시글 목록 표시 개수
+    board_size = target['board_size']
+
     def getSoupData(link):
-        
         url = link
-        if p.match(url) != None: 
-            res = requests.get(parse.unquote(url), headers=headers, verify=False, allow_redirects=True)
-            res.raise_for_status()
+        res = requests.get(parse.unquote(url), headers=headers, verify=False, allow_redirects=True)
+        res.raise_for_status()
 
-            if res.encoding not in ['euc-kr', 'utf-8']:
-                res.encoding = 'utf-8'
-            soup = BeautifulSoup(res.text, "lxml")
-            return soup
-        else:
-            res = requests.get(parse.unquote(url), headers=headers, verify=False, allow_redirects=True)
-            res.raise_for_status()
+        if res.encoding not in ['euc-kr', 'utf-8']:
+            res.encoding = 'utf-8'
+        soup = BeautifulSoup(res.text, "lxml")
+        return soup
 
-            if res.encoding not in ['euc-kr', 'utf-8']:
-                res.encoding = 'utf-8'
-            soup = BeautifulSoup(res.text, "lxml")
-            return soup
 
     urllib3.disable_warnings()
     start = time.time()
